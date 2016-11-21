@@ -18,10 +18,10 @@ The socket connections are pretty easy, you don't need cURL installed, I use the
 
 # How to setup
 * The [instructions are the same as defaultnamehere's implamentation](https://github.com/defaultnamehere/zzzzz/blob/master/README.md).
-* You need to make a SECRETS.txt file.
-* In that file you need one line that starts with `uid=` and you'll need to get your facebook uid.
-* You'll also need to add `cookie=` and you'll need to copy your facebook cookie.
-* Finally add `client_id=` and the client ID value that you find in the headers to / from facebook's server.
+* You need to make a `SECRETS.txt` file.
+** In that file you need one line that starts with `uid=` and you'll need to get your facebook uid.
+** You'll also need to add `cookie=` and you'll need to copy your facebook cookie.
+** Finally add `client_id=` and the client ID value that you find in the headers to / from facebook's server.
 
 # How to use
     php Stalky.php > output.log
