@@ -289,7 +289,7 @@ class Fetcher
             $line = $lat_time . '|' . self::ACTIVE_STATUS_JSON . PHP_EOL;
             # Assume the user is currently offline, since we got a lat for them. (This is guaranteed I think.)
             $line .= time() . '|' . self::OFFLINE_STATUS_JSON . PHP_EOL;
-            file_put_contents("log/{$uid}.txt", $line);
+            file_put_contents("log/{$uid}.txt", $line, FILE_APPEND);
         }
     }
 }
