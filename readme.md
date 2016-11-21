@@ -10,8 +10,14 @@ I mostly did this because his version would crash about every 8 hours for what e
 You need OpenSSL for this to work. As it's required for the secure connection to the facebook servers.
 The socket connections are pretty easy, you don't need cURL installed, I use the simple [file_get_contents()](http://php.net/manual/en/function.file-get-contents.php) function call with [stream_context_create()](http://php.net/manual/en/function.stream-context-create.php).
 
+# System Requirements
+* [PHP 7.0.0](http://php.net/downloads.php) or better, 7.1.0 recommended.
+* [openssl](http://php.net/manual/en/book.openssl.php) extension must be enabled.
+* [fopen wrappers](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) must be enabled.
+* [https:// wrapper](http://php.net/manual/en/wrappers.http.php) must be allowed.
+
 # How to setup
-* The instructions are the same as defaultnamehere's implamentation.
+* The [instructions are the same as defaultnamehere's implamentation](https://github.com/defaultnamehere/zzzzz/blob/master/README.md).
 * You need to make a SECRETS.txt file.
 * In that file you need one line that starts with `uid=` and you'll need to get your facebook uid.
 * You'll also need to add `cookie=` and you'll need to copy your facebook cookie.
