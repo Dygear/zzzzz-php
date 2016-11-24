@@ -29,3 +29,15 @@ The socket connections are pretty easy, you don't need cURL installed, I use the
 It will make the `log`, `php` and `raw` directories all by it's self if they are not already made. Just make sure that you can write to the directory that you clone this into.
 
 That's pretty much it.
+
+# Web Server
+    php -S 0.0.0.0:8080
+
+The above command will start the PHP web server on port `8080` and attach it's self to all interfacces available to it. From there in your browser on the same machine simply type `[localhost:8080](http://localhost:8080/)` or any [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) attached to that computer with the port `8080` and it will load `index.php` automaticlly for you. This interface allows you to view the log files in aggregate. Simply select the time you wish to view from and to, and select at least one uid from the list. From there you can search, view raw files, or view the print_f of the json file all from the browser. This is useful for debugging. I set the timezone in the file to my own `America/New_York`. You might want to change that to something else. Keep in mind that the log files are created with the file name in the unix epoch timestamp, so they are always in UTC. You have to convert them to your timezone for this to make more sense.
+
+# NAMES.txt
+If you want the datalist with a label containing the persons name and not just their uid, make a NAMES.txt file in the following format.
+
+    uid=Full Name
+
+You can fill in as many lines as you wish.
