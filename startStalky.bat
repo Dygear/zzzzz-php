@@ -9,3 +9,5 @@ php Stalky.php > output.log
 
 echo.
 echo "Stalky Crashed?"
+
+pause

@@ -13,6 +13,11 @@ namespace namespaceNameHere;
 class Fetcher
 {
     /**
+     * @var private $time float - NEGATIVE startup time for this class.
+     */
+    private $time;
+
+    /**
      * @var REQUEST_SCHEME string - Can only be https.
      */
     const REQUEST_SCHEME = 'https';
@@ -100,6 +105,14 @@ class Fetcher
      */
     public function __construct(string $secretsFilePath = 'SECRETS.txt')
     {
+        # Start Time
+        $this->time = -microtime(true);
+
+        # Set Error Handler to inside this class.
+        set_error_handler([$this, 'onError'], E_ALL);
+        # Set Exception Handler to inside this class.
+        set_exception_handler([$this, 'onException']);
+
         # If the file doesn't exist, don't do anything.
         if (!file_exists($secretsFilePath)) {
             throw new \Exception('You must provide the SECRETS.txt file location with your facebook cookie.', 1);
@@ -292,4 +305,22 @@ class Fetcher
             file_put_contents("log/{$uid}.txt", $line, FILE_APPEND);
         }
     }
+
+    public function onError(int $errno , string $errstr, string $errfile = '', int $errline = 0, array $errcontext = []): bool
+    {
+        echo sprintf(
+            '[%12.6f] %s: %d in %s on %d with "%s".' . PHP_EOL,
+            $this->time + microtime(true), date('Y-m-d H:i:s'), $errno, $errfile, $errline, $errstr
+        );
+        return false;
+    }
+
+    public function onException(Throwable $ex)
+    {
+        echo sprintf(
+            '[%12.6f] %s: %d in %s on %d with "%s".' . PHP_EOL . 'Backtrace: ' . PHP_EOL . '%s' . PHP_EOL,
+            $this->time + microtime(true), date('Y-m-d H:i:s'), $ex->getCode(), $ex->getFile(), $ex->getLine(), $ex->getMessage(), $ex->getTraceAsString()
+        );
+    }
+
 }
